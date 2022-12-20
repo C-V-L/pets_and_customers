@@ -21,4 +21,11 @@ RSpec.describe Customer do
     expect(@joel.pets).to eq([samson, lucy])
   end
 
+  it 'starts w/ 0 outstanding_bal and can be charged' do
+    expect(@joel.outstanding_balence).to eq(0)
+    @joel.charge(7)
+    @joel.charge(15)
+    expect(@joel.outstanding_balence).to eq(22)
+  end
+
 end
