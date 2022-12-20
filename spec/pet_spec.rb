@@ -6,6 +6,7 @@ RSpec.describe Pet do
   end
   
   it 'exisits and has attributes' do
+    expect(@samson).to be_a(Pet)
     expect(@samson.name).to eq("Samson")
     expect(@samson.type).to eq(:dog)
     expect(@samson.age).to be(3)
