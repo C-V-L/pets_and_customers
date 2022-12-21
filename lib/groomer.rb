@@ -6,16 +6,23 @@ class Groomer
   def initialize(name)
     @name = name
     @customers = []
-    @pets_at_groomer = []
   end
 
   def add_customer(customer)
     @customers << customer
-    @pets_at_groomer += customer.pets
+  end
+
+  def pets_at_groomer
+    pets = []
+    @customers.find_all { |customer| pets += customer.pets} 
+    pets
   end
 
   def customers_who_owe
     @customers.find_all { |customer| customer.outstanding_balence > 0 }
   end
-  
+
+  def pets_by_type(type)
+    pets_at_groomer.find_all { |pet| pet.type == type}
+  end
 end

@@ -29,4 +29,16 @@ RSpec.describe Groomer do
     @joel.charge(50)
     expect(@groomer.customers_who_owe).to eq([@joel])
   end
+
+  it 'can list number of each pet type' do
+    @groomer.add_customer(@joel)
+    expect(@groomer.pets_by_type(:dog).count).to eq(1)
+    expect(@groomer.pets_by_type(:cat).count).to eq(1)
+    spot = Pet.new({name: "Spot", type: :dog, age: 12})
+    simba = Pet.new({name: "Simba", type: :cat, age: 15})
+    @joel.adopt(spot)
+    @joel.adopt(simba)
+    expect(@groomer.pets_by_type(:dog).count).to eq(2)
+    expect(@groomer.pets_by_type(:cat).count).to eq(2)
+  end
 end
