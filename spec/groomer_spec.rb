@@ -1,6 +1,7 @@
 require './lib/groomer'
 require './lib/customer'
 require './lib/pet'
+require 'pry'
 
 RSpec.describe Groomer do
   before(:each) do 
@@ -20,5 +21,12 @@ RSpec.describe Groomer do
     @groomer.add_customer(@joel)
     expect(@groomer.customers).to eq([@joel])
     expect(@groomer.pets_at_groomer).to eq([@samson, @lucy])
+  end
+
+  it 'can list customers w/ outstanding balence' do
+    @groomer.add_customer(@joel)
+    expect(@groomer.customers_who_owe).to eq([])
+    @joel.charge(50)
+    expect(@groomer.customers_who_owe).to eq([@joel])
   end
 end

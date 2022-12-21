@@ -13,4 +13,9 @@ class Groomer
     @customers << customer
     @pets_at_groomer += customer.pets
   end
+
+  def customers_who_owe
+    @customers.find_all { |customer| customer.outstanding_balence > 0 }
+  end
+  
 end
